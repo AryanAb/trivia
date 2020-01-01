@@ -8,7 +8,7 @@ import requests
 #import hashlib
 
 config = {
-    "apiKey": "AIzaSyD5tDKhe1wUys8tgBWaOhfCpT7RXb3z4es",
+    "apiKey": "CONFIG_HERE",
     "authDomain": "trivia-259917.firebaseapp.com",
     "databaseURL": "https://trivia-259917.firebaseio.com",
     "projectId": "trivia-259917",
