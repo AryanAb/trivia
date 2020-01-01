@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RHHS Trivia</title>
+
+
+    <!--Icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <!--Header-->
+    <div class="row">
+        <div class="container-md text-center">
+            <h1 class="display-2">RHHS Trvia</h1>
+            <p style="font-size: 20px;">Welcome {{username}}</p>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <!--Join game-->
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-10 text-center" style="max-width: 800px;">
+            <form action="{{url_for('create')}}" method="post" id="joinform">
+                <button type="submit" class="btn btn-success" onclick="createdGame()">Create a Game</button>
+            </form>
+            <div id="loading" style="display: none;">
+                <p class="text-info">Creating the game.</p>
+                <div class="spinner-border text-info"></div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <!--Info and Setting-->
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-10s">
+            <div class="container-md text-center">
+                <h3>Username: {{username}}</h3>
+                <br>
+                <i class="fa fa-gear fa-spin" style="font-size:x-large"></i>
+                <a style="font-size: x-large;" href="{{url_for('settings')}}">User Settings</a>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <!--Leaderboard-->
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-5">
+            <div class="container-md text-center">
+                <h2>Leaderboard</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Place</th>
+                            <th>Username</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1. </td>
+                            <td>{{names[0]}}</td>
+                            <td>{{scores[0]}}</td>
+                        </tr>
+                        <tr>
+                            <td>2. </td>
+                            <td>{{names[1]}}</td>
+                            <td>{{scores[1]}}</td>
+                        </tr>
+                        <tr>
+                            <td>3. </td>
+                            <td>{{names[2]}}</td>
+                            <td>{{scores[2]}}</td>
+                        </tr>
+                        <tr>
+                            <td>4. </td>
+                            <td>{{names[3]}}</td>
+                            <td>{{scores[3]}}</td>
+                        </tr>
+                        <tr>
+                            <td>5. </td>
+                            <td>{{names[4]}}</td>
+                            <td>{{scores[4]}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <dv class="col"></dv>
+    </div>
+
+</body>
+
+<script>
+    function createdGame() {
+        document.getElementById('loading').style.display="block"
+    }
+</script>
+
+</html>

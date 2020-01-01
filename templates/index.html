@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RHHS Trivia</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+
+<body>
+
+    <div class="alert alert-info alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Note!</strong> This website uses cookies, please enable your cookies to fully use this website.
+      </div>
+
+    <div class="row">
+        <div class="container-md text-center">
+            <h1 class="display-2">RHHS Trvia</h1>
+            <img src="{{url_for('static', filename='Richmond_Hill_HS_COA.jpg')}}" alt="Logo">
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-10" style="max-width: 800px;">
+            <div class="container-md text-center">
+                <h2>Sign In</h2>
+                <form action="{{url_for('signin')}}" method="post" id="signin_form" class="needs-validation" novalidate>
+                    <div class="form-group">
+                        <label for="signin_email">Email:</label>
+                        <input type="email" class="form-control" name="signin_email" id="signin_email"
+                            placeholder="JaneDoe@gmail.com" required><br>
+                        <div id="email-feedback1" class="invalid-feedback">Please fill out this field.</div>
+                        <div id="email-feedback2" class="invalid-feedback" style="display: none;">This email adress is
+                            not registerd.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signin_password">Password:</label>
+                        <input type="password" class="form-control" name="signin_password" id="signin_password"
+                            placeholder="p@$$w0rd" required><br>
+                        <div id="password-feedback1" class="invalid-feedback">Please fill out this field</div>
+                        <div id="password-feedback2" class="invalid-feedback">The password does not match the email.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Log In</button>
+                </form>
+                <br>
+                <a href="{{url_for('passwordrecovery')}}">Forgot your password?</a>
+                <br>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-10" style="max-width: 800px;">
+            <div class="container-md text-center">
+                <h2>Sign Up</h2>
+                <form action="{{url_for('signup')}}" method="post" id="signup_form" class="needs-validation">
+                    <div class="form-group">
+                        <label for="signup_email">Email:</label>
+                        <input type="email" class="form-control" name="signup_email" id="signup_email"
+                            placeholder="JohnDoe@gmail.com"><br>
+                        <div id="email-feedback3" class="invalid-feedback">Please fill out this form.</div>
+                        <div id="email-feedback4" class="invalid-feedback">Email already registered</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup_username">Username:</label>
+                        <input type="text" class="form-control" name="signup_username" id="signup_username"
+                            placeholder="John_Doe"><br>
+                        <div id="username-feedback1" class="invalid-feedback">Please fill out this form.</div>
+                        <div id="username-feedback2" class="invalid-feedback">This username already exists.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup_password">Password:</label>
+                        <input type="password" class="form-control" name="signup_password" id="signup_password"
+                            placeholder="At least 6 characters"><br>
+                        <div id="password-feedback3" class="invalid-feedback">Please fill out this form.</div>
+                        <div id="password-feedback4" class="invalid-feedback">Passwords did not match.</div>
+                        <div id="password-feedback7" class="invalid-feedback">Passwords too weak.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup_passwrod_repeat">Repeat Password:</label>
+                        <input type="password" class="form-control" name="signup_password_repeat"
+                            id="signup_password_repeat" placeholder="At least 6 characters"><br>
+                        <div id="password-feedback5" class="invalid-feedback">Please fill out this form.</div>
+                        <div id="password-feedback6" class="invalid-feedback">Passwords did not match.</div>
+                        <div id="password-feedback8" class="invalid-feedback">Passwords too weak.</div>
+
+                    </div>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="remember" required> I agree to <a
+                                href="#">The terms of service</a>
+                            <div class="invalid-feedback">Check this checkbox to continue.</div>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
+                <br>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-5">
+            <div class="container-md text-center">
+                <h2>Leaderboard</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Place</th>
+                            <th>Username</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1. </td>
+                            <td>{{names[0]}}</td>
+                            <td>{{scores[0]}}</td>
+                        </tr>
+                        <tr>
+                            <td>2. </td>
+                            <td>{{names[1]}}</td>
+                            <td>{{scores[1]}}</td>
+                        </tr>
+                        <tr>
+                            <td>3. </td>
+                            <td>{{names[2]}}</td>
+                            <td>{{scores[2]}}</td>
+                        </tr>
+                        <tr>
+                            <td>4. </td>
+                            <td>{{names[3]}}</td>
+                            <td>{{scores[3]}}</td>
+                        </tr>
+                        <tr>
+                            <td>5. </td>
+                            <td>{{names[4]}}</td>
+                            <td>{{scores[4]}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <dv class="col"></dv>
+    </div>
+
+    <br>
+    <a href="{{url_for('prank')}}">Click Here for interesting details</a>
+</body>
+
+<style></style>
+</style>
+
+<script>
+
+    (() => {
+        'use strict';
+        window.addEventListener('load', () => {
+            // Get the forms we want to add validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, form => {
+                form.addEventListener('submit', event => {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+
+    if ("{{error}}" === 'IE') {
+        const email = document.getElementById('signin_email');
+        email.classList.add('is-invalid');
+        const feedback1 = document.getElementById('email-feedback1');
+        feedback1.style.display = "none";
+        const feedback2 = document.getElementById('email-feedback2');
+        feedback2.style.display = "block";
+    } else if ("{{error}}" === 'IP') {
+        const pswd = document.getElementById('signin_password');
+        pswd.classList.add('is-invalid');
+        const feedback1 = document.getElementById('password-feedback1');
+        feedback1.style.display = "none";
+        const feedback2 = document.getElementById('password-feedback2');
+        feedback2.style.display = "block";
+    } else if ("{{error}}" === 'EE') {
+        const email = document.getElementById('signup_email');
+        email.classList.add('is-invalid');
+        const feedback3 = document.getElementById('email-feedback3');
+        feedback3.style.display = "none";
+        const feedback4 = document.getElementById('email-feedback4');
+        feedback4.style.display = "block";
+    } else if ("{{error}}" === 'PP') {
+        const password1 = document.getElementById('signup_password');
+        password1.classList.add('is-invalid');
+        const password2 = document.getElementById('signup_password_repeat');
+        password2.classList.add('is-invalid');
+        const feedback3 = document.getElementById('password-feedback3');
+        feedback3.style.display = "none";
+        const feedback5 = document.getElementById('password-feedback5');
+        feedback5.style.display = "none";
+        const feedback4 = document.getElementById('password-feedback4');
+        feedback4.style.display = "block";
+        const feedback6 = document.getElementById('password-feedback6');
+        feedback6.style.display = "block";
+    } else if ("{{error}}" === 'UE') {
+        const username = document.getElementById('signup_username');
+        username.classList.add('is-invalid');
+        const feedback1 = document.getElementById('username-feedback1');
+        feedback1.style.display = "none";
+        const feedback2 = document.getElementById('username-feedback2');
+        feedback2.style.display = "block";
+    } else if ("{{error}}" === 'WP') {
+        const password1 = document.getElementById('signup_password');
+        password1.classList.add('is-invalid');
+        const password2 = document.getElementById('signup_password_repeat');
+        password2.classList.add('is-invalid');
+        const feedback3 = document.getElementById('password-feedback3');
+        feedback3.style.display = "none";
+        const feedback5 = document.getElementById('password-feedback5');
+        feedback5.style.display = "none";
+        const feedback4 = document.getElementById('password-feedback4');
+        feedback4.style.display = "none";
+        const feedback6 = document.getElementById('password-feedback6');
+        feedback6.style.display = "none";
+        const feedback7 = document.getElementById('password-feedback7');
+        feedback7.style.display = "block";
+        const feedback8 = document.getElementById('password-feedback8');
+    }
+
+</script>
+
+</html>

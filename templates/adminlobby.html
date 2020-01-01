@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- SocketIO stuff note to person editting this next: sockets are unreliable on school internet, that's why all connections are done through http and not sockets
+        <title>RHHS Trivia</title>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RHHS Trivia</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="row">
+        <div class="container-md text-center">
+            <h2 class="display-2">Game Code:</h2>
+            <h3 class="display-3">{{code}}</h3>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-10 text-center">
+
+            <div id="loading" style="display: none;">
+                <p class="text-info">Game is starting.</p>
+                <div class="spinner-border text-info"></div>
+            </div>
+
+            <h2>Players in the game:</h2>
+            <div id="player"></div>
+        </div>
+        <div class="col"></div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-10 text-center">
+            <form action="{{url_for('start', code=code)}}">
+                <button type="submit" class="btn btn-success" onclick="startedGame()">Start</button>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+
+</body>
+<script>
+    $(document).ready(function () {
+        //const socekt = io(); // the problem is here. Works with local host but not gcp.
+    });
+
+    function update() {
+        console.log('request sent to {{code}}')
+        req = $.ajax({
+            url: '/{{code}}/update',
+            type: 'POST'
+        });
+
+        req.done(function (data) {
+            htmlData = '<ul class="list-group">';
+            for (var i = 0; i < data.players.length; i++) {
+                htmlData = htmlData + '<li class="list-group-item">' + data.players[i] + '</li>';
+            }
+            htmlData = htmlData + '</ul>';
+            $('#player').html(htmlData);
+            window.setTimeout(update, 1000);
+        });
+    }
+
+    update();
+
+    function startedGame() {
+        document.getElementById('loading').style.display="block";
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,19 @@
+Add Senior and Junior teams to firebase
+Fix socket issue on gcp server
+Decide if players should be added to game upon pressing the button or socket connection
+Figure out why and how socket io slows down the server
+Maybe add a live scoreboard.
+Add a feature where admins can edit users' scores, assign Senior and Junior, etc.
+Fix the setting page: Reset password and display error for username
+Click or hover to see user details (admin only)
+
+Buy a domain so people can easily connect.
+Hook it up to a SSL certificate
+
+Add exception handling for all sort of HTTP errors.
+
+Add Bootstrap to Setting page
+Create the terms of service page
+Create a Forgot password page.
+
+Add footer

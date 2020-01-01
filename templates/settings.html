@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>RHHS Trivia</title>
+    </head>
+    <body>
+        <h2>Change Password:</h2>
+        <form action="{{url_for('settings')}}" method="post">
+            <input type="password" name="password1" placeholder="current pass">
+            <input type="password" name="password2" placeholder="new pass">
+            <input type="password" name="password3" placeholder="new pass repeat">
+            <button name="changepass" type="submit">Change Password</button>
+        </form>
+        <form action="{{url_for('settings')}}" method="post">
+            <input type="text" name="username" placeholder="new username">
+            <button name="changeuser" type="submit">Change Username</button>
+        </form>
+    </body>
+</html>

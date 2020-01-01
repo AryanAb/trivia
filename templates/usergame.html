@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>RHHS Trivia</title>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="container-md text-center">
+            <form action="{{url_for('game', code=code)}}" method="post">
+                <button style="padding:40% 0;" type="submit" class="btn btn-success btn-lg btn-block">Buzzer</button>
+            </form>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-10 text-center">
+
+            <h2 class="display-3">Players Pressed:</h2>
+            <div id="player"></div>
+        </div>
+        <div class="col"></div>
+    </div>
+
+</body>
+<script>
+    function update() {
+        console.log('request sent to {{code}}')
+        req = $.ajax({
+            url: '/{{code}}/update',
+            type: 'POST'
+        });
+
+        req.done(function (data) {
+            if (data.players.length === 3) {
+                document.getElementById('buzzer').disabled = true;
+            }
+            htmlData = '<ul class="list-group">';
+            for (var i = 1; i < data.players.length; i++) {
+                htmlData = htmlData + '<li class="list-group-item">' + data.players[i] + '</li>';
+            }
+            htmlData = htmlData + '</ul>';
+            $('#player').html(htmlData);
+            window.setTimeout(update, 500);
+        });
+    }
+
+    update();
+</script>
+
+</html>
